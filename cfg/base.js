@@ -31,6 +31,7 @@ module.exports = {
     modulesDirectories: ['node_modules', path.join(__dirname, '../node_modules')],
     extensions: ['', '.web.js', '.js', '.jsx', '.json'],
     alias: {
+      images: `${defaultSettings.srcPath}/images/`,
       actions: `${defaultSettings.srcPath}/actions/`,
       components: `${defaultSettings.srcPath}/components/`,
       sources: `${defaultSettings.srcPath}/sources/`,

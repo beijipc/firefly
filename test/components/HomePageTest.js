@@ -8,15 +8,15 @@
 // const TestUtils = React.addons.TestUtils;
 import createComponent from 'helpers/shallowRenderHelper';
 
-import Main from 'components/Main';
+import Home from 'components/home';
 
-describe('MainComponent', function () {
+describe('HomeComponent', function () {
 
   beforeEach(function () {
-    this.MainComponent = createComponent(Main);
+    this.HomeComponent = createComponent(Home);
   });
 
   it('should have its component name as default className', function () {
-    expect(this.MainComponent.props.className).to.equal('index');
+    expect(this.HomeComponent.props.className).to.equal('home-page');
   });
 });

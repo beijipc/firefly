@@ -3,14 +3,14 @@ import 'antd-mobile/lib/style/index.less';
 import 'styles/App.less';
 
 import React from 'react';
-
-// let yeomanImage = require('../images/yeoman.png');
+import TabNavBar from './common/TabNavBar';
 
 class AppComponent extends React.Component {
   render() {
     return (
       <main>
         {this.props.children}
+        <TabNavBar {...this.props} />
       </main>
     );
   }
@@ -20,4 +20,3 @@ AppComponent.defaultProps = {
 };
 
 module.exports = AppComponent;
-// export default AppComponent;

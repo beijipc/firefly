@@ -15,23 +15,18 @@ class Login extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
 
-    // console.log(this);
     const {form,location,router} = this.props;
     const email = form.getFieldValue('email');
     const pass = form.getFieldValue('password');
-    // console.log(form.getFieldValue('autofocus'));
-    auth.login(email, pass, (loggedIn) => {
-      console.log(loggedIn, location);
 
+    auth.login(email, pass, (loggedIn) => {
       if (!loggedIn)
         return this.setState({ error: true })
-
-
-      if (location.state && location.state.nextPathname) {
+      if (location.state && location.state.nextPathname)
         router.replace(location.state.nextPathname)
-      } else {
+      else
         router.replace('/')
-      }
+
     })
   }
 
@@ -46,7 +41,7 @@ class Login extends React.Component {
             clear
             placeholder="email"
             autoFocus
-          >标题</InputItem>
+          >邮箱</InputItem>
           <InputItem
             {...getFieldProps('password')}
             type="password"
@@ -58,17 +53,17 @@ class Login extends React.Component {
                 focused: false
               });
             }}
-          >标题</InputItem>
+          >密码</InputItem>
         </List>
-        {/* <label><input ref="email" placeholder="email" defaultValue="joe@example.com" /></label> */}
-        {/* <label><input ref="pass" placeholder="password" /></label> (hint: password1)<br /> */}
         <WhiteSpace size='md' />
         <WingBlank size="lg">
-          <Button type="submit" onClick={this.handleSubmit.bind(this)}>login</Button>
+          <Button type="submit" icon="check" onClick={this.handleSubmit.bind(this)}>登录</Button>
         </WingBlank>
-      {this.state.error && (
-          <p>Bad login information</p>
-        )}
+
+        <WhiteSpace size='md' />
+        <div>随意输入邮箱和密码</div>
+
+        {this.state.error && <p>Bad login information</p> }
       </div>
     );
   }
