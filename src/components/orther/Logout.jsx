@@ -1,6 +1,6 @@
 import React from 'react'
 import {Button} from 'antd-mobile';
-import auth from 'stores/auth';
+import auth from 'actions/auth';
 
 class logout extends React.Component {
   componentDidMount() {

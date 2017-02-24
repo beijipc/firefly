@@ -41,7 +41,7 @@ let config = Object.assign({}, baseConfig, {
       keywords: pkg.keywords.join(','),
       template: './src/template.html',
       filename: './../index.html',
-      favicon: './src/favicon.ico',
+      favicon: './src/images/favicon.ico',
       // CDN: CDN,
       minify:{},
       showErrors: true,

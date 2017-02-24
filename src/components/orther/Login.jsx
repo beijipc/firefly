@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button,List,InputItem,WhiteSpace,WingBlank} from 'antd-mobile';
 import {createForm} from 'rc-form';
-import auth from 'stores/auth';
+import auth from 'actions/auth';
 
 class Login extends React.Component {
   constructor(props){

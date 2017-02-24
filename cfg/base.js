@@ -32,6 +32,7 @@ module.exports = {
     extensions: ['', '.web.js', '.js', '.jsx', '.json'],
     alias: {
       images: `${defaultSettings.srcPath}/images/`,
+      utils: `${defaultSettings.srcPath}/utils/`,
       actions: `${defaultSettings.srcPath}/actions/`,
       components: `${defaultSettings.srcPath}/components/`,
       sources: `${defaultSettings.srcPath}/sources/`,

@@ -1,5 +1,6 @@
-import auth from 'stores/auth';
+import auth from 'actions/auth';
 
+//登录跳转
 function requireAuth(nextState, replace) {
   if (!auth.loggedIn()) {
     replace({

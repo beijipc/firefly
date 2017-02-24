@@ -1,39 +1,46 @@
 import React from 'react';
-import {WingBlank, Grid, Icon} from 'antd-mobile';
 import {Link} from 'react-router';
-import auth from 'stores/auth';
+import auth from 'actions/auth';
 import Http from 'actions/http';
+import {time} from 'utils';
 import './index.less';
-
-const icons = [
-  'check-circle', 'check', 'check-circle-o',
-  'cross-circle', 'cross', 'cross-circle-o',
-  'up', 'down', 'left',
-  'right', 'ellipsis',
-  'koubei-o', 'koubei', 'loading',
-];
 
 class Home extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      tags : []
+      list : []
     }
   }
 
   componentWillMount() {
-
+    this.setState({
+      time: time.formatTimeBackwards(new Date().getTime() + 24*60*60*1000)
+    })
   }
 
+  //异步方法
   async componentDidMount() {
     try {
-      let response = await Http.post('https://kankanapi.jianloubao.com/base/tags');
-      let tags = response.Data.map((item) => {
-        item.Icon = `https://imgkankan.cang.com${item.Icon}!s64`
-        return item;
-      })
+      // GET request
+      // let getParams = {
+      //   start: 1,
+      //   count: 10
+      // }
+      // let testGet = await Http.get('https://api.douban.com/v2/movie/top250', getParams);
+
+      // POST request
+      let postParams = {
+        PageIndex: 1,
+        PageSize: 10,
+        Session: '',
+        TagId: 0
+      }
+      let testPost = await Http.post('https://kankanapi.jianloubao.com/appraiser/list', postParams);
+      testPost = testPost.Data.Items;
+
       this.setState({
-        tags : tags
+        list : testPost
       });
     } catch (e) {
       console.error(e);
@@ -43,14 +50,14 @@ class Home extends React.Component {
     console.log('complete');
   }
 
-  renderTags(){
-    if(!this.state.tags.length) return;
+  renderList(){
+    if(!this.state.list.length) return;
 
-    let items = this.state.tags.map((item,index) => {
+    let items = this.state.list.map((item,index) => {
       return (
         <li key={index}>
-          <img src={item.Icon} />
-          {item.Name}
+          <img src={item.Avatar} width='30px' />
+          {item.NickName}
         </li>
       );
     })
@@ -61,14 +68,15 @@ class Home extends React.Component {
     let authMenu = auth.loggedIn() ? <li><Link to="/logout">logout</Link></li> :<li><Link to="/login">login</Link></li>
     return (
         <div className='home-page' size='lg'>
-          <h2>首页2</h2>
+          <h2>首页</h2>
+          {this.state.time}
           <ul>
             <li><Link className='p-m' to="/">Home</Link></li>
             <li><Link to="/my">My</Link></li>
             <li><Link to="/my/profile">Profile</Link></li>
             {authMenu}
           </ul>
-          {this.renderTags()}
+          {this.renderList()}
         </div>
     );
   }

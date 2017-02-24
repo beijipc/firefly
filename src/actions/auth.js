@@ -1,4 +1,4 @@
-const auth = {
+const Auth = {
   login(email, pass, cb) {
     cb = arguments[arguments.length - 1]
     if (localStorage.token) {
@@ -35,7 +35,7 @@ const auth = {
   onChange() {}
 };
 
-module.exports = auth;
+module.exports = Auth;
 
 //登录请求
 function pretendRequest(email, pass, cb) {
